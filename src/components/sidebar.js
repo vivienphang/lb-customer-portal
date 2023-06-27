@@ -5,11 +5,11 @@ import {
     Box,
     MenuItem,
     Typography,
-    Link,
+    // Link,
   } from "@mui/material";
   import SpeedIcon from "@mui/icons-material/Speed";
   import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-  import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+  // import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
   
   const Sidebar = () => {
     return (
@@ -59,7 +59,20 @@ import {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography>Accordion Menu 2</Typography>
+              <Typography>Robots</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>Text goes here ...</Typography>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion elevation={0}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography>Reports</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>Text goes here ...</Typography>

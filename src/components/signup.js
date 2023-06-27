@@ -1,10 +1,30 @@
 import { useState } from "react";
 import { Container, TextField, Button } from "@mui/material";
+import { auth, googleProvider } from "../config/firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import Logout from "./logout";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  //   console.log(auth.currentUser.email)
+  const signupButton = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const signupWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const signupHandler = (e) => {
     e.preventDefault();
@@ -45,6 +65,7 @@ const Signup = () => {
           margin="normal"
         />
         <Button
+          onClick={signupButton}
           variant="contained"
           color="primary"
           type="submit"
@@ -54,7 +75,9 @@ const Signup = () => {
         >
           Sign Up
         </Button>
+        <Button onClick={signupWithGoogle}>Sign Up with Google</Button>
       </form>
+      <Logout />
     </Container>
   );
 };

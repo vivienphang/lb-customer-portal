@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -10,10 +10,38 @@ import {
 import Login from "../components/login";
 import Signup from "../components/signup";
 import backgroundImg from "./assets/bg-image.png";
+import { db } from "../config/firebase";
+import {getDocs, collection} from "firebase/firestore"
+
 
 const Home = () => {
   // Create states to handle login and signup
   const [isLoginClicked, setIsLoginClicked] = useState(true);
+
+    // State to track all users
+    const [userList, setUserList] = useState([]);
+
+    // Make reference to users collection in firebase 
+    const usersCollectionRef = collection(db, "users")
+  
+    // Query db on page load
+    useEffect(() => {
+      const getUserList = async () => {
+        // Read data
+        // Set the setUserList
+        try {
+          const data = await getDocs(usersCollectionRef)
+          console.log("data:", data)
+  
+        } catch (err) {
+          console.error(err)
+        }
+      };
+      getUserList();
+    }, []);
+
+
+
   return (
     // <Grid direction="column" alignItems="center" justify="center">
     <div
