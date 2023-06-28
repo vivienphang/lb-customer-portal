@@ -16,7 +16,6 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={9}>
           <Typography marginTop={2} sx={{ fontWeight: "bold", p: 1 }}>
-            View Users
             <ViewUsers />
           </Typography>
         </Grid>

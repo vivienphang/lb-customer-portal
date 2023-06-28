@@ -56,8 +56,6 @@ import {
           <Accordion elevation={0}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
             >
               <Typography>Robots</Typography>
             </AccordionSummary>
@@ -69,8 +67,6 @@ import {
           <Accordion elevation={0}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
             >
               <Typography>Reports</Typography>
             </AccordionSummary>

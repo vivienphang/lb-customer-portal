@@ -1,4 +1,6 @@
 import DataTable from "react-data-table-component";
+import Sidebar from "../components/sidebar";
+import { Grid, Typography } from "@mui/material";
 
 const columns = [
   {
@@ -35,7 +37,7 @@ const data = [
     cleaningHours: 3640000,
     status: "Active",
     lastOnline: "2021-02-05 08:28:36",
-    actions: "Edit or Delete"
+    actions: "Edit or Delete",
   },
   {
     id: 2,
@@ -44,7 +46,7 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete"
+    actions: "Edit or Delete",
   },
   {
     id: 3,
@@ -53,7 +55,7 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete"
+    actions: "Edit or Delete",
   },
   {
     id: 4,
@@ -62,7 +64,7 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete"
+    actions: "Edit or Delete",
   },
   {
     id: 5,
@@ -71,7 +73,7 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete"
+    actions: "Edit or Delete",
   },
   {
     id: 6,
@@ -80,12 +82,32 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete"
+    actions: "Edit or Delete",
   },
 ];
 
 const ViewUsers = () => {
-  return <DataTable columns={columns} data={data} />;
+  return (
+    <>
+      <Grid
+        container
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+      >
+        {/* <Grid item xs={1}>
+          <Sidebar />
+        </Grid> */}
+
+        <Grid item xs={12}>
+          <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
+            View Users
+          </Typography>
+            <DataTable columns={columns} data={data} />
+        </Grid>
+      </Grid>
+    </>
+  );
 };
 
 export default ViewUsers;

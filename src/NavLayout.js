@@ -15,6 +15,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TranslateIcon from "@mui/icons-material/Translate";
 import Logo from "./pages/assets/Logo_thumbnail.png";
 
+
 const NavLayout = () => {
   return (
     <>
@@ -70,6 +71,7 @@ const NavLayout = () => {
 
               <IconButton size="small" sx={{ p: 1 }}>
                 <AccountCircleIcon sx={{ color: "white" }} />
+                <Typography>John Doe</Typography>
               </IconButton>
 
               <IconButton size="small" sx={{ p: 1 }}>

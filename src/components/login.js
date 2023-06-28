@@ -41,7 +41,7 @@ const Login = () => {
             color="primary"
             fullWidth
             size="large"
-            sx={{ marginTop: "2rem", marginBottom: "3rem" }}
+            sx={{ marginTop: "2rem", marginBottom: "2rem" }}
           >
             Login
           </Button>
