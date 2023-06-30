@@ -1,6 +1,9 @@
 import DataTable from "react-data-table-component";
-import Sidebar from "../components/sidebar";
-import { Grid, Typography } from "@mui/material";
+import { useState, useEffect } from "react";
+import { db } from "../config/firebase";
+import { getDocs, collection } from "firebase/firestore";
+// import Sidebar from "../components/sidebar";
+import { Box, Grid, Typography, Button } from "@mui/material";
 
 const columns = [
   {
@@ -87,8 +90,35 @@ const data = [
 ];
 
 const ViewUsers = () => {
+  // State to track all users
+  const [usersList, setUsersList] = useState([]);
+
+  // Make reference to users collection in firebase
+  const usersCollectionRef = collection(db, "users");
+
+  // Query db on page load
+  useEffect(() => {
+    const getUsersList = async () => {
+      // Read data
+      // Set the setUserList
+      try {
+        const data = await getDocs(usersCollectionRef);
+        console.log("data:", data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUsersList();
+  }, []);
+
   return (
     <>
+      <Box display="flex" justifyContent="space-between">
+        <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
+          View Users
+        </Typography>
+        <Button size="small" variant="contained"> + Add Users</Button>
+      </Box>
       <Grid
         container
         direction="row"
@@ -100,10 +130,13 @@ const ViewUsers = () => {
         </Grid> */}
 
         <Grid item xs={12}>
-          <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
-            View Users
-          </Typography>
-            <DataTable columns={columns} data={data} />
+          {/* <Box>
+            <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
+              View Users
+            </Typography>
+            <Button variant="contained"> + Add Users</Button>
+          </Box> */}
+          <DataTable columns={columns} data={data} />
         </Grid>
       </Grid>
     </>

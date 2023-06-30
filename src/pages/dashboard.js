@@ -10,8 +10,9 @@ const Dashboard = () => {
         direction="row"
         justifyContent="flex-start"
         alignItems="flex-start"
+        mr={3}
       >
-        <Grid item xs={3}>
+        <Grid item xs={2.8}>
           <Sidebar />
         </Grid>
         <Grid item xs={9}>

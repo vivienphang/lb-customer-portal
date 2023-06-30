@@ -9,13 +9,7 @@ const firebaseConfig = {
   projectId: "my-app-6b452",
   storageBucket: "my-app-6b452.appspot.com",
   messagingSenderId: "49675539004",
-  appId: "1:49675539004:web:b7fb1396b28d361233e939",
-  // apiKey: process.env.API_KEY,
-  // authDomain: process.env.AUTH_DOMAIN,
-  // projectId: process.env.PROJECT_ID,
-  // storageBucket: process.env.STORAGE_BUCKET,
-  // messagingSenderId: process.env.MSG_SENDER_ID,
-  // appId: process.env.APP_ID,
+  appId: "1:49675539004:web:b7fb1396b28d361233e939"
 };
 
 // Initialize Firebase

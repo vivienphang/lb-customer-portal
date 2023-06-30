@@ -10,16 +10,27 @@ import {
   import SpeedIcon from "@mui/icons-material/Speed";
   import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
   // import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+  import { useNavigate } from "react-router-dom";
   
   const Sidebar = () => {
+    const navigate = useNavigate()
+
+    const handleAddUser = () => {
+      navigate("/dashboard/add-user")
+    }
+
+    const handleViewUsers = () => {
+      navigate("/dashboard")
+    }
+
     return (
       <div>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            width: "200px",
-            p: 2,
+            width: "300px",
+            p: 3,
           }}
         >
           <MenuItem>
@@ -30,7 +41,6 @@ import {
           </MenuItem>
           <Accordion
             elevation={0}
-            sx={{ backgroundColor: "transparent !important" }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -49,8 +59,8 @@ import {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <MenuItem>View Users</MenuItem>
-              <MenuItem>Add Users</MenuItem>
+              <MenuItem onClick={handleViewUsers}>View Users</MenuItem>
+              <MenuItem onClick={handleAddUser}>Add Users</MenuItem>
             </AccordionDetails>
           </Accordion>
           <Accordion elevation={0}>

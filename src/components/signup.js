@@ -10,7 +10,7 @@ const Signup = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Function to check password validation
   const validatePassword = () => {
@@ -34,9 +34,13 @@ const Signup = () => {
       // Create a new user with email and password
       try {
         console.log("inside try catch block");
-        const data = await createUserWithEmailAndPassword(auth, email, password);
-        console.log('this is data:', data)
-        navigate("/dashboard")
+        const data = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        console.log("this is data:", data);
+        navigate("/dashboard");
       } catch (err) {
         console.log("error msg:", err.message);
       }
@@ -71,9 +75,12 @@ const Signup = () => {
           margin="normal"
         />
         {validatePassword !== true && (
-          <Typography marginTop={2} sx={{ textAlign: "center", color: "red", fontSize: "12px"}}>
+          <Typography
+            marginTop={2}
+            sx={{ textAlign: "center", color: "red", fontSize: "12px" }}
+          >
             {errorMessage}
-          </Typography> 
+          </Typography>
         )}
         <Button
           variant="contained"
@@ -86,9 +93,10 @@ const Signup = () => {
           Sign Up
         </Button>
       </form>
-
     </Container>
   );
 };
 
 export default Signup;
+
+

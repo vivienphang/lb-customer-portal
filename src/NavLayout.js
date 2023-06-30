@@ -14,9 +14,11 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TranslateIcon from "@mui/icons-material/Translate";
 import Logo from "./pages/assets/Logo_thumbnail.png";
+import { useNavigate } from "react-router-dom";
 
 
 const NavLayout = () => {
+  const navigate = useNavigate()
   return (
     <>
       <AppBar
@@ -69,7 +71,12 @@ const NavLayout = () => {
                 </Badge>
               </IconButton>
 
-              <IconButton size="small" sx={{ p: 1 }}>
+              <IconButton size="small" sx={{ p: 1 }} 
+              onClick={() => {
+                navigate("/dashboard/reset")
+              }}
+              
+              >
                 <AccountCircleIcon sx={{ color: "white" }} />
                 <Typography>John Doe</Typography>
               </IconButton>
