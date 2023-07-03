@@ -1,10 +1,12 @@
 import Sidebar from "../components/sidebar";
 import { Grid, Typography } from "@mui/material";
 import ViewUsers from "./viewUsers";
+import NavLayout from "../NavLayout";
 
 const Dashboard = () => {
   return (
     <>
+      <NavLayout />
       <Grid
         container
         direction="row"

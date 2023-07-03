@@ -14,7 +14,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<NavLayout />}>
+        <Route path="/dashboard" >
           <Route index element={<Dashboard />} />
           <Route path=":id" element={<h4>Single user's page</h4>} />
           <Route path="reset" element={<ResetPassword />} />

@@ -92,6 +92,7 @@ const NavLayout = () => {
       <Box mt={8}>
         <Outlet />
       </Box>
+
     </>
   );
 };
