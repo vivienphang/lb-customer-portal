@@ -30,7 +30,7 @@ import {
             display: "flex",
             flexDirection: "column",
             width: "300px",
-            p: 3,
+            p: 2,
           }}
         >
           <MenuItem>
@@ -44,17 +44,10 @@ import {
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              // aria-controls="panel1a-content"
-              // id="panel1a-header"
+              aria-controls="panel1a-content"
+              id="panel1a-header"
             >
               <Typography align="center">
-                {/* <PersonOutlineOutlinedIcon
-                  sx={{
-                    alignItems: "center",
-                    color: "black",
-                    p: 1,
-                  }}
-                /> */}
                 Users
               </Typography>
             </AccordionSummary>

@@ -89,7 +89,7 @@ const data = [
   },
 ];
 
-const ViewUsers = () => {
+const BoardData = () => {
   // State to track all users
   const [usersList, setUsersList] = useState([]);
 
@@ -99,8 +99,6 @@ const ViewUsers = () => {
   // Query db on page load
   useEffect(() => {
     const getUsersList = async () => {
-      // Read data
-      // Set the setUserList
       try {
         const data = await getDocs(usersCollectionRef);
         console.log("data:", data);
@@ -117,7 +115,10 @@ const ViewUsers = () => {
         <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
           View Users
         </Typography>
-        <Button size="small" variant="contained"> + Add Users</Button>
+        <Button size="small" variant="contained">
+          {" "}
+          + Add Users
+        </Button>
       </Box>
       <Grid
         container
@@ -125,17 +126,7 @@ const ViewUsers = () => {
         justifyContent="flex-start"
         alignItems="flex-start"
       >
-        {/* <Grid item xs={1}>
-          <Sidebar />
-        </Grid> */}
-
         <Grid item xs={12}>
-          {/* <Box>
-            <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
-              View Users
-            </Typography>
-            <Button variant="contained"> + Add Users</Button>
-          </Box> */}
           <DataTable columns={columns} data={data} />
         </Grid>
       </Grid>
@@ -143,4 +134,4 @@ const ViewUsers = () => {
   );
 };
 
-export default ViewUsers;
+export default BoardData;

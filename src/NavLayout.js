@@ -3,6 +3,7 @@ import {
   AppBar,
   Badge,
   Box,
+  Container,
   Grid,
   IconButton,
   Toolbar,
@@ -15,10 +16,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TranslateIcon from "@mui/icons-material/Translate";
 import Logo from "./pages/assets/Logo_thumbnail.png";
 import { useNavigate } from "react-router-dom";
-
+import Sidebar from "./components/sidebar";
 
 const NavLayout = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <AppBar
@@ -35,7 +36,7 @@ const NavLayout = () => {
             alignItems="center"
           >
             <Grid item xs={9} container spacing={1}>
-              <Link to="/">
+              <Link to="/dashboard">
                 <Box
                   component="img"
                   sx={{ height: 45, width: 60 }}
@@ -71,11 +72,12 @@ const NavLayout = () => {
                 </Badge>
               </IconButton>
 
-              <IconButton size="small" sx={{ p: 1 }} 
-              onClick={() => {
-                navigate("/dashboard/reset")
-              }}
-              
+              <IconButton
+                size="small"
+                sx={{ p: 1 }}
+                onClick={() => {
+                  navigate("/dashboard/reset");
+                }}
               >
                 <AccountCircleIcon sx={{ color: "white" }} />
                 <Typography>John Doe</Typography>
@@ -88,11 +90,20 @@ const NavLayout = () => {
           </Grid>
         </Toolbar>
       </AppBar>
-
-      <Box mt={8}>
-        <Outlet />
-      </Box>
-
+      <Grid
+        container
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        marginTop={10}
+      >
+        <Grid item xs={3}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={9}>
+          <Outlet />
+        </Grid>
+      </Grid>
     </>
   );
 };
