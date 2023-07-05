@@ -2,8 +2,8 @@ import DataTable from "react-data-table-component";
 import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
-// import Sidebar from "../components/sidebar";
 import { Box, Grid, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -92,22 +92,29 @@ const data = [
 const BoardData = () => {
   // State to track all users
   const [usersList, setUsersList] = useState([]);
+  const navigate = useNavigate();
 
   // Make reference to users collection in firebase
   const usersCollectionRef = collection(db, "users");
 
-  // Query db on page load
+  const getUsersList = async () => {
+    try {
+      const data = await getDocs(usersCollectionRef);
+      console.log("data:", data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  // Query db on page load (Note: Do not put function in useEffect)
   useEffect(() => {
-    const getUsersList = async () => {
-      try {
-        const data = await getDocs(usersCollectionRef);
-        console.log("data:", data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
     getUsersList();
   }, []);
+
+  // Button handler
+  const handleAddUserButton = () => {
+    navigate("/dashboard/add-user")
+
+  }
 
   return (
     <>
@@ -115,7 +122,7 @@ const BoardData = () => {
         <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
           View Users
         </Typography>
-        <Button size="small" variant="contained">
+        <Button size="small" variant="contained" onClick={handleAddUserButton}>
           {" "}
           + Add Users
         </Button>

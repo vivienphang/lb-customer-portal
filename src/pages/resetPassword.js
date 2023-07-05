@@ -6,7 +6,6 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 
 const RestPassword = () => {
   const handleSubmit = (event) => {
@@ -28,14 +27,10 @@ const RestPassword = () => {
       }}
     >
       <Avatar
-        size="lg"
-        sx={{
-          mt: 4,
-          mb: 2,
-        }}
-      >
-        <AccountCircle />
-      </Avatar>
+        alt="Remy Sharp"
+        src="/static/images/avatar/1.jpg"
+        sx={{ width: 150, height: 150 }}
+      />
       <Typography component="h1" variant="h5">
         Reset Password
       </Typography>
@@ -106,12 +101,7 @@ const RestPassword = () => {
             />
           </Grid>
         </Grid>
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-
-        >
+        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           Add User
         </Button>
       </Box>
