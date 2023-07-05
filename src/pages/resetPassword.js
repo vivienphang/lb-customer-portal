@@ -8,6 +8,13 @@ import {
 } from "@mui/material";
 
 const RestPassword = () => {
+  // TODO: Handle user password change
+
+  // TODO: Error handling when password does not match
+
+  // TODO: Successful message when password is changed
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,10 +27,11 @@ const RestPassword = () => {
   return (
     <Box
       sx={{
-        marginTop: 5,
+        margin: 5,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <Avatar
@@ -31,79 +39,49 @@ const RestPassword = () => {
         src="/static/images/avatar/1.jpg"
         sx={{ width: 150, height: 150 }}
       />
-      <Typography component="h1" variant="h5">
+      <Typography component="h1" variant="h5" sx={{ p: 2}}>
         Reset Password
       </Typography>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={5.25}>
+        <Grid container spacing={2} justifyContent="center" direction="column">
+          <Grid item xs={10}>
             <TextField
-              autoComplete="given-name"
-              name="firstName"
+              autoComplete="currentPassword"
+              name="currentPassword"
               required
               fullWidth
-              id="firstName"
-              label="First Name"
+              id="currentPassword"
+              label="Current Password:"
+              type="password"
               autoFocus
             />
           </Grid>
-          <Grid item xs={5.25}>
+          <Grid item xs={10}>
             <TextField
               required
               fullWidth
-              id="lastName"
-              label="Last Name"
-              name="lastName"
-              autoComplete="family-name"
+              id="newPassword"
+              label="New Password:"
+              name="newPassword"
+              autoComplete="newPassword"
+              type="password"
             />
           </Grid>
-          <Grid item xs={10.5}>
+          <Grid item xs={10}>
             <TextField
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              type="email"
+              id="confirmPassword"
+              label="Confirm New Password:"
+              name="confirmPassword"
+              autoComplete="confirmPassword"
+              type="password"
             />
           </Grid>
-          <Grid item xs={3.5}>
-            <TextField
-              required
-              fullWidth
-              name="cleaning-hours"
-              id="cleaning-hours"
-              label="Cleaning Hours"
-              autoComplete="cleaning-hours"
-              type="number"
-            />
-          </Grid>
-          <Grid item xs={3.5}>
-            <TextField
-              required
-              fullWidth
-              name="status"
-              id="status"
-              label="Status"
-              autoComplete="status"
-              type="text"
-            />
-          </Grid>
-          <Grid item xs={3.5}>
-            <TextField
-              required
-              fullWidth
-              name="last-online-time"
-              id="last-online-time"
-              label="Last Online Time"
-              type="datetime-local"
-            />
-          </Grid>
+          <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+            Reset Password
+          </Button>
         </Grid>
-        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
-          Add User
-        </Button>
       </Box>
     </Box>
   );

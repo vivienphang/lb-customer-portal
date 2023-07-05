@@ -53,7 +53,7 @@ import {
             </AccordionSummary>
             <AccordionDetails>
               <MenuItem onClick={handleViewUsers}>View Users</MenuItem>
-              <MenuItem onClick={handleAddUser}>Add Users</MenuItem>
+              <MenuItem onClick={handleAddUser}>Add User</MenuItem>
             </AccordionDetails>
           </Accordion>
           <Accordion elevation={0}>

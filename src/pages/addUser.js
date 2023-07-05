@@ -28,15 +28,6 @@ const AddUser = () => {
         alignItems: "center",
       }}
     >
-      <Avatar
-        size="lg"
-        sx={{
-          mt: 4,
-          mb: 2,
-        }}
-      >
-        <AccountCircle />
-      </Avatar>
       <Typography component="h1" variant="h5" textAlign="center">
         Add User
       </Typography>
@@ -74,7 +65,7 @@ const AddUser = () => {
               type="email"
             />
           </Grid>
-          <Grid item xs={3.5}>
+          {/* <Grid item xs={3.5}>
             <TextField
               required
               fullWidth
@@ -84,9 +75,9 @@ const AddUser = () => {
               autoComplete="cleaning-hours"
               type="number"
             />
-          </Grid>
-          <Grid item xs={3.5}>
-            <TextField
+          </Grid> */}
+          {/* <Grid item xs={3.5}> */}
+            {/* <TextField
               required
               fullWidth
               name="status"
@@ -95,8 +86,8 @@ const AddUser = () => {
               autoComplete="status"
               type="text"
             />
-          </Grid>
-          <Grid item xs={3.5}>
+          </Grid> */}
+          {/* <Grid item xs={3.5}>
             <TextField
               required
               fullWidth
@@ -105,7 +96,7 @@ const AddUser = () => {
               label="Last Online Time"
               type="datetime-local"
             />
-          </Grid>
+          </Grid> */}
           <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Add User
           </Button>
