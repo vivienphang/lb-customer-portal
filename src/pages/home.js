@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -10,37 +10,43 @@ import {
 import Login from "../components/login";
 import Signup from "../components/signup";
 import backgroundImg from "./assets/bg-image.png";
-import { db } from "../config/firebase";
-import {getDocs, collection} from "firebase/firestore"
-
+// import { db } from "../config/firebase";
+// import {getDocs, collection} from "firebase/firestore"
 
 const Home = () => {
   // Create states to handle login and signup
   const [isLoginClicked, setIsLoginClicked] = useState(true);
+  const [userIdToken, setUserIdToken] = useState("");
 
-    // State to track all users
-    const [userList, setUserList] = useState([]);
+  const handleLoginClick = async (uidToken) => {
+    // get localstorage info
+    const getUserId = await localStorage.getItem("authUser");
+    console.log("get userID:", getUserId);
+    console.log("uidToken: ", uidToken);
+    setUserIdToken(getUserId)
+  };
 
-    // Make reference to users collection in firebase 
-    const usersCollectionRef = collection(db, "users")
-  
-    // Query db on page load
-    useEffect(() => {
-      const getUserList = async () => {
-        // Read data
-        // Set the setUserList
-        try {
-          const data = await getDocs(usersCollectionRef)
-          console.log("data:", data)
-  
-        } catch (err) {
-          console.error(err)
-        }
-      };
-      getUserList();
-    }, []);
+  // State to track all users
+  // const [userList, setUserList] = useState([]);
 
+  // Make reference to users collection in firebase
+  // const usersCollectionRef = collection(db, "users")
 
+  // Query db on page load
+  // useEffect(() => {
+  //   const getUserList = async () => {
+  //     // Read data
+  //     // Set the setUserList
+  //     try {
+  //       const data = await getDocs(usersCollectionRef)
+  //       console.log("data:", data)
+
+  //     } catch (err) {
+  //       console.error(err)
+  //     }
+  //   };
+  //   getUserList();
+  // }, []);
 
   return (
     // <Grid direction="column" alignItems="center" justify="center">
@@ -99,7 +105,7 @@ const Home = () => {
             </Button>
           </CardActions>
 
-          {isLoginClicked && <Login />}
+          {isLoginClicked && <Login onClick={handleLoginClick} />}
           {!isLoginClicked && <Signup />}
         </Stack>
       </Card>

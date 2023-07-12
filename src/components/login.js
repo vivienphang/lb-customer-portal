@@ -1,49 +1,48 @@
 import { useState } from "react";
-import {
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Typography } from "@mui/material";
 
-const Login = () => {
+const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [uidToken, setUidToken] = useState("");
+  const [uidToken, setUidToken] = useState(null);
+
+  
 
   const navigate = useNavigate();
 
   const loginHandler = async (e) => {
+    console.log("login props:", props.onClick)
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
     try {
-      console.log("inside login handler try block")
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("userCredential", userCredential)
+      console.log("inside login handler try block");
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
-      console.log("user:", user)
-      
+      console.log("user:", user);
+
       if (user.email === email) {
-        const userId = user.uid
-        setUidToken(userId)
+        const userId = user.uid;
         console.log("User ID:", userId);
-        navigate("/dashboard")
-      } 
+        setUidToken(userId);
+        localStorage.setItem("authUser:", userId);
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.log("Login Error:", error.message);
-      console.log("console includes:", error.message.includes("user"))
-      if (error.message.includes("user")) {
-        setErrorMessage("Incorrect email address. Please try again.")
-      } else {
-        setErrorMessage("Incorrect password. Please try again.")
-      }
-      setEmail("")
-      setPassword("")
+      setErrorMessage("Incorrect email address/password. Please try again.");
+      // setEmail("");
+      // setPassword("");
     }
   };
-  
 
   return (
     <>
@@ -74,6 +73,7 @@ const Login = () => {
             fullWidth
             size="large"
             sx={{ marginTop: "2rem", marginBottom: "1rem" }}
+            onClick={() => props.onClick(uidToken)}
           >
             Login
           </Button>
