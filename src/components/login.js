@@ -4,18 +4,14 @@ import { auth } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Typography } from "@mui/material";
 
-const Login = (props) => {
+const Login = ({ setUser, onClick }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [uidToken, setUidToken] = useState(null);
-
-  
 
   const navigate = useNavigate();
-
+  let userId;
   const loginHandler = async (e) => {
-    console.log("login props:", props.onClick)
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
@@ -28,12 +24,12 @@ const Login = (props) => {
       );
       const user = userCredential.user;
       console.log("user:", user);
+      setUser(user)
 
       if (user.email === email) {
-        const userId = user.uid;
+        userId = user.uid;
         console.log("User ID:", userId);
-        setUidToken(userId);
-        localStorage.setItem("authUser:", userId);
+        localStorage.setItem("authUser", userId);
         navigate("/dashboard");
       }
     } catch (error) {
@@ -73,7 +69,7 @@ const Login = (props) => {
             fullWidth
             size="large"
             sx={{ marginTop: "2rem", marginBottom: "1rem" }}
-            onClick={() => props.onClick(uidToken)}
+            // onClick={() => onClick(userId)}
           >
             Login
           </Button>

@@ -10,21 +10,24 @@ import {
 import Login from "../components/login";
 import Signup from "../components/signup";
 import backgroundImg from "./assets/bg-image.png";
+import { useNavigate } from "react-router-dom";
 // import { db } from "../config/firebase";
 // import {getDocs, collection} from "firebase/firestore"
 
 const Home = () => {
   // Create states to handle login and signup
   const [isLoginClicked, setIsLoginClicked] = useState(true);
-  const [userIdToken, setUserIdToken] = useState("");
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
 
-  const handleLoginClick = async (uidToken) => {
-    // get localstorage info
-    const getUserId = await localStorage.getItem("authUser");
-    console.log("get userID:", getUserId);
-    console.log("uidToken: ", uidToken);
-    setUserIdToken(getUserId)
-  };
+  // create function to check user login that expects token as parameter
+  // const isUserLoggedIn = (token) => {
+  //   console.log("token: ", token);
+  //   setUser(token)
+  //   if (token) {
+  //     navigate("/dashboard")
+  //   }
+  // };
 
   // State to track all users
   // const [userList, setUserList] = useState([]);
@@ -47,6 +50,7 @@ const Home = () => {
   //   };
   //   getUserList();
   // }, []);
+  // console.log("setIsUserAuthenticated: ", isUserAuthenticated)
 
   return (
     // <Grid direction="column" alignItems="center" justify="center">
@@ -105,7 +109,9 @@ const Home = () => {
             </Button>
           </CardActions>
 
-          {isLoginClicked && <Login onClick={handleLoginClick} />}
+          {isLoginClicked && (
+            <Login setUser={setUser} />
+          )}
           {!isLoginClicked && <Signup />}
         </Stack>
       </Card>
