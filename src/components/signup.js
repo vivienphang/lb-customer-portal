@@ -20,18 +20,19 @@ const Signup = ({ setUserDocId }) => {
     return password !== "" && passwordRegex.test(password);
   };
 
-
   const createUserData = async (userId) => {
     try {
-      console.log("inside createUserdata...")
+      console.log("inside createUserdata...");
       const docRef = await addDoc(collection(db, "users"), {
         email,
         password,
-        displayName
+        displayName,
+        userId,
       });
       console.log("docRef: ", docRef);
       console.log("docRef ID: ", docRef.id);
       const docRefId = docRef.id;
+      // localStorage.setItem("docRefId", docRefId);
       setUserDocId(docRefId);
     } catch (e) {
       console.error(e);
@@ -55,10 +56,12 @@ const Signup = ({ setUserDocId }) => {
         console.log("user UID:", userId);
         // Update user's displayName
         await updateProfile(auth.currentUser, {
-          displayName: displayName}).then(() => {
-            console.log("display name updated!")
-          })
-        await createUserData();
+          displayName: displayName,
+          userId: data.user.uid,
+        }).then(() => {
+          console.log("display name updated!");
+        });
+        await createUserData(userId);
 
         navigate("/");
         alert("Sign up successful. Please login.");
@@ -78,7 +81,7 @@ const Signup = ({ setUserDocId }) => {
   return (
     <Container maxWidth="xs">
       <form onSubmit={handleSubmitForm}>
-      <TextField
+        <TextField
           sx={{ height: 40 }}
           label="Full Name"
           type="name"

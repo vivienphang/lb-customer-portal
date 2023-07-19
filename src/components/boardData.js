@@ -119,12 +119,12 @@ const data = [
   },
 ];
 
-const BoardData = ({userDocId}) => {
+const BoardData = ({ userDocId, customerData }) => {
   // State to track all users
-  // const [usersList, setUsersList] = useState([]);
+  const [usersList, setUsersList] = useState([]);
   const navigate = useNavigate();
 
-  // Make reference to users collection in firebase
+  // // Make reference to users collection in firebase
   // const usersCollectionRef = collection(db, "users");
 
   // const getUsersList = async () => {

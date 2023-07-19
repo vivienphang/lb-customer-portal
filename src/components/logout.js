@@ -9,6 +9,7 @@ const Logout = () => {
     try {
       // clear localstorage
       localStorage.removeItem("authUser");
+      localStorage.removeItem("docRefId");
       console.log(localStorage.getItem("authUser"));
       navigate("/");
       await signOut(auth);

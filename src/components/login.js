@@ -22,11 +22,6 @@ const Login = ({ userToken, setUserToken }) => {
       );
       const newUser = { ...userCredential.user };
       console.log("new user:", newUser);
-      // const addDisplayName = await updateProfile(auth.currentUser, {
-      //   displayName: "John Doe"}).then(() => {
-      //     console.log("display name updated!")
-      //   })
-      // console.log("display name:", addDisplayName)
       setUserToken(newUser); // can use it in app.js
 
       if (newUser.email === email) {
