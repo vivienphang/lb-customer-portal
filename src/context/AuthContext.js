@@ -1,6 +1,7 @@
 // import { createContext, useReducer } from "react"
 
-// export const AuthContext = createContext()
+// export const UserAuthContext = createContext()
+// console.log(UserAuthContext)
 
 // export const authReducer = (state, action) => {
 //     switch(action.type = "LOGIN")

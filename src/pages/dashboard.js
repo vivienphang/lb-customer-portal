@@ -1,44 +1,38 @@
-// import { Grid, Typography } from "@mui/material";
-// import BoardData from "../components/boardData";
-
-// const Dashboard = () => {
-//   return (
-//     <>
-//       <Grid
-//         container
-//         direction="row"
-//         justifyContent="flex-start"
-//         alignItems="flex-start"
-//         mr={3}
-//       >
-//         <Grid item xs={9}>
-//           {/* <Typography marginTop={2} sx={{ fontWeight: "bold", p: 1 }}> */}
-//             <BoardData />
-//           {/* </Typography> */}
-//         </Grid>
-//       </Grid>
-//     </>
-//   );
-// };
-
-// export default Dashboard;
-
-import { Grid } from "@mui/material";
-import NavLayout from "../NavLayout";
+import { useEffect } from "react";
 import BoardData from "../components/boardData";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../config/firebase";
 
-const Dashboard = () => {
+const Dashboard = ({ userDocId }) => {
+  console.log("inside dashboard: ", userDocId);
+  // State to track users data
+  // const [customerData, customerData] = useState([]);
+
+  // Make reference to users collection in firebase
+  // const usersCollectionRef = collection(db, "users", userDocId, "customers")
+  const [values, loading, error, snapshot] =
+    useCollectionData(query, options);
+  // Query db on page load
+  useEffect(() => {
+    const getUserList = async () => {
+      try {
+        // const data = await getDocs(usersCollectionRef)
+        // console.log("data:", data)
+        await FirebaseFirestore.instance;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUserList();
+  }, []);
+
   return (
     // <Grid container direction="row" justifyContent="flex-start" alignItems="flex-start">
-    //   <Grid item xs={3}>
-    //     <NavLayout />
-    //   </Grid>
     //   <Grid item xs={9}>
-        <BoardData />
+    <BoardData userDocId={userDocId} />
     //   </Grid>
     // </Grid>
   );
 };
 
 export default Dashboard;
-

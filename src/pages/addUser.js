@@ -1,22 +1,40 @@
 import {
-  Avatar,
   Button,
   TextField,
   Grid,
   Box,
   Typography,
 } from "@mui/material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 
-const AddUser = () => {
+const AddUser = ({ userDocId, setUserDocId }) => {
+  console.log("userDocId prop - ", userDocId)
+
+
+  // Create function to add user list into database
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
       email: data.get("email"),
-      password: data.get("password"),
     });
   };
+
+  // const createCustomerData = async (userId) => {
+  //   try {
+  //     const docRef = await addDoc(collection(db, "users"), {
+  //       email,
+  //       password,
+  //     });
+  //     console.log("docRef: ", docRef);
+  //     console.log("docRef ID: ", docRef.id);
+  //     const docRefId = docRef.id;
+  //     setUserDocId(docRefId);
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   return (
     <Box
@@ -65,38 +83,6 @@ const AddUser = () => {
               type="email"
             />
           </Grid>
-          {/* <Grid item xs={3.5}>
-            <TextField
-              required
-              fullWidth
-              name="cleaning-hours"
-              id="cleaning-hours"
-              label="Cleaning Hours"
-              autoComplete="cleaning-hours"
-              type="number"
-            />
-          </Grid> */}
-          {/* <Grid item xs={3.5}> */}
-            {/* <TextField
-              required
-              fullWidth
-              name="status"
-              id="status"
-              label="Status"
-              autoComplete="status"
-              type="text"
-            />
-          </Grid> */}
-          {/* <Grid item xs={3.5}>
-            <TextField
-              required
-              fullWidth
-              name="last-online-time"
-              id="last-online-time"
-              label="Last Online Time"
-              type="datetime-local"
-            />
-          </Grid> */}
           <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
             Add User
           </Button>

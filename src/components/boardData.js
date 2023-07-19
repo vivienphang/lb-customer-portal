@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
 import { getDocs, collection } from "firebase/firestore";
 import { Box, Grid, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -40,7 +40,12 @@ const data = [
     cleaningHours: 3640000,
     status: "Active",
     lastOnline: "2021-02-05 08:28:36",
-    actions: "Edit or Delete",
+    actions: (
+      <>
+        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+        <Link to={`/delete/${1}`}>Delete</Link>
+      </>
+    ),
   },
   {
     id: 2,
@@ -49,7 +54,12 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete",
+    actions: (
+      <>
+        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+        <Link to={`/delete/${1}`}>Delete</Link>
+      </>
+    ),
   },
   {
     id: 3,
@@ -58,7 +68,12 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete",
+    actions: (
+      <>
+        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+        <Link to={`/delete/${1}`}>Delete</Link>
+      </>
+    ),
   },
   {
     id: 4,
@@ -67,7 +82,12 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete",
+    actions: (
+      <>
+        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+        <Link to={`/delete/${1}`}>Delete</Link>
+      </>
+    ),
   },
   {
     id: 5,
@@ -76,7 +96,12 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete",
+    actions: (
+      <>
+        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+        <Link to={`/delete/${1}`}>Delete</Link>
+      </>
+    ),
   },
   {
     id: 6,
@@ -85,36 +110,40 @@ const data = [
     cleaningHours: 3652300,
     status: "Active",
     lastOnline: "2021-02-07 11:31:26",
-    actions: "Edit or Delete",
+    actions: (
+      <>
+        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+        <Link to={`/delete/${1}`}>Delete</Link>
+      </>
+    ),
   },
 ];
 
-const BoardData = () => {
+const BoardData = ({userDocId}) => {
   // State to track all users
-  const [usersList, setUsersList] = useState([]);
+  // const [usersList, setUsersList] = useState([]);
   const navigate = useNavigate();
 
   // Make reference to users collection in firebase
-  const usersCollectionRef = collection(db, "users");
+  // const usersCollectionRef = collection(db, "users");
 
-  const getUsersList = async () => {
-    try {
-      const data = await getDocs(usersCollectionRef);
-      console.log("data:", data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  // Query db on page load (Note: Do not put function in useEffect)
-  useEffect(() => {
-    getUsersList();
-  }, []);
+  // const getUsersList = async () => {
+  //   try {
+  //     const data = await getDocs(usersCollectionRef);
+  //     console.log("data:", data);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+  // // Query db on page load (Note: Do not put function in useEffect)
+  // useEffect(() => {
+  //   getUsersList();
+  // }, [usersList]);
 
   // Button handler
   const handleAddUserButton = () => {
-    navigate("/dashboard/add-user")
-
-  }
+    navigate("/dashboard/add-user");
+  };
 
   return (
     <>

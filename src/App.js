@@ -5,14 +5,15 @@ import ResetPassword from "./pages/resetPassword";
 import NavLayout from "./NavLayout";
 import AddUser from "./pages/addUser";
 import { useState, useEffect } from "react";
+
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-  // state to check current user token
-  const [userToken, setUserToken] = useState("");
+  const [userToken, setUserToken] = useState({})
   // state to check previous token
   const [prevToken, setPrevToken] = useState(localStorage.getItem("authUser"));
+  const [userDocId, setUserDocId] = useState("") 
   const navigate = useNavigate();
 
   // use useEffect to render checkAuth whenever localstorage is changed
@@ -23,9 +24,9 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("authUser");
-      console.log("localstorage", token);
       if (token === prevToken) {
         setIsUserAuthenticated(true);
+        
       } else {
         setIsUserAuthenticated(false);
       }
@@ -40,12 +41,13 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home setUserToken={setUserToken} />} />
+        <Route path="/" element={<Home userToken={userToken} setUserToken={setUserToken} userDocId={userDocId} setUserDocId={setUserDocId}/>} />
         {isUserAuthenticated && (
-          <Route path="/dashboard" element={<NavLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="add-user" element={<AddUser />} />
-            <Route path="reset" element={<ResetPassword />} />
+          <Route path="/dashboard" element={<NavLayout userToken={userToken} />}>
+            <Route index element={<Dashboard userToken={userToken} userDocId={userDocId}/>} />
+            {/* <Route path="edit" element={<EditUser  userToken={userToken}/>} /> */}
+            <Route path="add-user" element={<AddUser  userToken={userToken} userDocId={userDocId} setUserDocId={setUserDocId} />} />
+            <Route path="reset" element={<ResetPassword userToken={userToken}  />} />
           </Route>
         )}
         <Route path="*" element={<Home />} />

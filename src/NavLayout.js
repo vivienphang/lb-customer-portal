@@ -3,7 +3,6 @@ import {
   AppBar,
   Badge,
   Box,
-  Container,
   Grid,
   IconButton,
   Toolbar,
@@ -17,9 +16,16 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import Logo from "./pages/assets/Logo_thumbnail.png";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./components/sidebar";
+import { useEffect, useState } from "react";
 
-const NavLayout = () => {
+const NavLayout = ({ userToken }) => {
+  const [username, setUsername] = useState("")
   const navigate = useNavigate();
+  console.log("props in NavLayout - displayName: ", userToken.displayName);
+
+  useEffect(() => {
+    setUsername(userToken.displayName)
+  }, [username]);
   return (
     <>
       <AppBar
@@ -80,7 +86,7 @@ const NavLayout = () => {
                 }}
               >
                 <AccountCircleIcon sx={{ color: "white" }} />
-                <Typography>John Doe</Typography>
+                <Typography> {username}</Typography>
               </IconButton>
 
               <IconButton size="small" sx={{ p: 1 }}>

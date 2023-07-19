@@ -10,47 +10,12 @@ import {
 import Login from "../components/login";
 import Signup from "../components/signup";
 import backgroundImg from "./assets/bg-image.png";
-import { useNavigate } from "react-router-dom";
 // import { db } from "../config/firebase";
 // import {getDocs, collection} from "firebase/firestore"
 
-const Home = () => {
+const Home = ({ userToken, setUserToken, setUserDocId }) => {
   // Create states to handle login and signup
   const [isLoginClicked, setIsLoginClicked] = useState(true);
-  const [user, setUser] = useState({})
-  const navigate = useNavigate()
-
-  // create function to check user login that expects token as parameter
-  // const isUserLoggedIn = (token) => {
-  //   console.log("token: ", token);
-  //   setUser(token)
-  //   if (token) {
-  //     navigate("/dashboard")
-  //   }
-  // };
-
-  // State to track all users
-  // const [userList, setUserList] = useState([]);
-
-  // Make reference to users collection in firebase
-  // const usersCollectionRef = collection(db, "users")
-
-  // Query db on page load
-  // useEffect(() => {
-  //   const getUserList = async () => {
-  //     // Read data
-  //     // Set the setUserList
-  //     try {
-  //       const data = await getDocs(usersCollectionRef)
-  //       console.log("data:", data)
-
-  //     } catch (err) {
-  //       console.error(err)
-  //     }
-  //   };
-  //   getUserList();
-  // }, []);
-  // console.log("setIsUserAuthenticated: ", isUserAuthenticated)
 
   return (
     // <Grid direction="column" alignItems="center" justify="center">
@@ -110,9 +75,11 @@ const Home = () => {
           </CardActions>
 
           {isLoginClicked && (
-            <Login setUser={setUser} />
+            <Login userToken={userToken} setUserToken={setUserToken} />
           )}
-          {!isLoginClicked && <Signup />}
+          {!isLoginClicked && (
+            <Signup userToken={userToken} setUserDocId={setUserDocId} />
+          )}
         </Stack>
       </Card>
     </div>

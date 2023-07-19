@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Typography } from "@mui/material";
 
-const Login = ({ setUser, onClick }) => {
+const Login = ({ userToken, setUserToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -13,8 +13,6 @@ const Login = ({ setUser, onClick }) => {
   let userId;
   const loginHandler = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
     try {
       console.log("inside login handler try block");
       const userCredential = await signInWithEmailAndPassword(
@@ -22,12 +20,17 @@ const Login = ({ setUser, onClick }) => {
         email,
         password
       );
-      const user = userCredential.user;
-      console.log("user:", user);
-      setUser(user)
+      const newUser = { ...userCredential.user };
+      console.log("new user:", newUser);
+      // const addDisplayName = await updateProfile(auth.currentUser, {
+      //   displayName: "John Doe"}).then(() => {
+      //     console.log("display name updated!")
+      //   })
+      // console.log("display name:", addDisplayName)
+      setUserToken(newUser); // can use it in app.js
 
-      if (user.email === email) {
-        userId = user.uid;
+      if (newUser.email === email) {
+        userId = newUser.uid;
         console.log("User ID:", userId);
         localStorage.setItem("authUser", userId);
         navigate("/dashboard");
@@ -35,8 +38,6 @@ const Login = ({ setUser, onClick }) => {
     } catch (error) {
       console.log("Login Error:", error.message);
       setErrorMessage("Incorrect email address/password. Please try again.");
-      // setEmail("");
-      // setPassword("");
     }
   };
 
@@ -69,7 +70,6 @@ const Login = ({ setUser, onClick }) => {
             fullWidth
             size="large"
             sx={{ marginTop: "2rem", marginBottom: "1rem" }}
-            // onClick={() => onClick(userId)}
           >
             Login
           </Button>

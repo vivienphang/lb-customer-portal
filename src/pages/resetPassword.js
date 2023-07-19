@@ -6,6 +6,7 @@ import {
   Box,
   Typography,
 } from "@mui/material";
+import Logout from "../components/logout";
 
 const RestPassword = () => {
   // TODO: Handle user password change
@@ -18,6 +19,7 @@ const RestPassword = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    console.log("data: ", data)
     console.log({
       email: data.get("email"),
       password: data.get("password"),
@@ -40,7 +42,7 @@ const RestPassword = () => {
         sx={{ width: 150, height: 150 }}
       />
       <Typography component="h1" variant="h5" sx={{ p: 2}}>
-        Reset Password
+        User's name here
       </Typography>
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={2} justifyContent="center" direction="column">
@@ -78,9 +80,10 @@ const RestPassword = () => {
               type="password"
             />
           </Grid>
-          <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button type="submit" variant="contained" sx={{ mt: 3, mb: 1 }}>
             Reset Password
           </Button>
+          <Logout />
         </Grid>
       </Box>
     </Box>
