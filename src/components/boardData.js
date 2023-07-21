@@ -1,5 +1,4 @@
 import DataTable from "react-data-table-component";
-import { useEffect } from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,117 +29,25 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    id: 1,
-    fullName: "Brook Hilton",
-    email: "bhilton@gmail.com",
-    cleaningHours: 3640000,
-    status: "Active",
-    lastOnline: "2021-02-05 08:28:36",
-    actions: (
-      <>
-        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
-        <Link to={`/delete/${1}`}>Delete</Link>
-      </>
-    ),
-  },
-  {
-    id: 2,
-    fullName: "Hayleigh Frazier",
-    email: "frazier.h@gmail.com",
-    cleaningHours: 3652300,
-    status: "Active",
-    lastOnline: "2021-02-07 11:31:26",
-    actions: (
-      <>
-        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
-        <Link to={`/delete/${1}`}>Delete</Link>
-      </>
-    ),
-  },
-  {
-    id: 3,
-    fullName: "Hayleigh Frazier",
-    email: "frazier.h@gmail.com",
-    cleaningHours: 3652300,
-    status: "Active",
-    lastOnline: "2021-02-07 11:31:26",
-    actions: (
-      <>
-        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
-        <Link to={`/delete/${1}`}>Delete</Link>
-      </>
-    ),
-  },
-  {
-    id: 4,
-    fullName: "Hayleigh Frazier",
-    email: "frazier.h@gmail.com",
-    cleaningHours: 3652300,
-    status: "Active",
-    lastOnline: "2021-02-07 11:31:26",
-    actions: (
-      <>
-        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
-        <Link to={`/delete/${1}`}>Delete</Link>
-      </>
-    ),
-  },
-  {
-    id: 5,
-    fullName: "Hayleigh Frazier",
-    email: "frazier.h@gmail.com",
-    cleaningHours: 3652300,
-    status: "Active",
-    lastOnline: "2021-02-07 11:31:26",
-    actions: (
-      <>
-        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
-        <Link to={`/delete/${1}`}>Delete</Link>
-      </>
-    ),
-  },
-  {
-    id: 6,
-    fullName: "Hayleigh Frazier",
-    email: "frazier.h@gmail.com",
-    cleaningHours: 3652300,
-    status: "Active",
-    lastOnline: "2021-02-07 11:31:26",
-    actions: (
-      <>
-        <Link to={`/edit/${1}`}>Edit</Link> or{" "}
-        <Link to={`/delete/${1}`}>Delete</Link>
-      </>
-    ),
-  },
-];
-
 const BoardData = ({ userDocId, customerData }) => {
+  console.log("userDocId: ", userDocId)
   const navigate = useNavigate();
 
   const displayCustomersData = () => {
     const mappingCustomersData = customerData.map((el, index) => {
-      // console.log("el- ", el);
-      // console.log("el.lastOnlineTime.seconds- ", el.lastOnlineTime.seconds)
-      // const lastOnlineTime = el.lastOnlineTime.seconds
+
       return {
         ...el,
         actions: (
           <>
-            <Link to={`/edit/${el.id}`}>Edit</Link> or{" "}
-            <Link to={`/delete/${el.id}`}>Delete</Link>
+            <Link to={`/edit/${1}`}>Edit</Link> or{" "}
+            <Link to={`/delete/${2}`}>Delete</Link>
           </>
         ),
       };
-    })
+    });
     return mappingCustomersData;
   };
-
-  useEffect(()=> {
-    displayCustomersData()
-  }, [customerData])
 
   // Button handler
   const handleAddUserButton = () => {
@@ -165,7 +72,7 @@ const BoardData = ({ userDocId, customerData }) => {
         alignItems="flex-start"
       >
         <Grid item xs={12}>
-          <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={displayCustomersData()} selectableRows pagination />
         </Grid>
       </Grid>
     </>

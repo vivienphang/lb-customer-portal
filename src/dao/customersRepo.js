@@ -1,5 +1,5 @@
 import { db } from "../config/firebase";
-import { doc, query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, getDocs, where } from "firebase/firestore";
 
 // GET user with specific Id
 export const getCustomerWithSpecificId = async (userRefId) => {

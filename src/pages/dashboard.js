@@ -7,8 +7,6 @@ const Dashboard = ({ userDocId, userToken }) => {
   console.log("userUID: ", userUID);
   const [customerData, setCustomerData] = useState([]);
 
-
-
   useEffect(() => {
     const getCustomerByUserId = async (userUID) => {
       if (userUID) {
@@ -23,30 +21,6 @@ const Dashboard = ({ userDocId, userToken }) => {
     };
     getCustomerByUserId(userUID);
   }, [userUID]);
-
-  // const getUsersData = () => {
-  //   const usersCollectionRef = collection(db, "users");
-  //   getDocs(usersCollectionRef)
-  //     .then((response) => {
-  //       const userData = response.docs.map(doc => ({
-  //         data: doc.data(),
-  //         id: doc.id,
-  //       }));
-  //       console.log(userData[0].data.customers)
-  //       const customerDetails = userData[0].data.customers
-  //       setCustomerData(customerDetails);
-  //     })
-  //     .catch((error) => console.log(error.message));
-  // };
-
-  // Query on page load
-  // useEffect(() => {
-  // if (!userToken) {
-  //   return;
-  // }
-  // const userId = userToken?.uid;
-  //   getUserDocuments(documentId);
-  // }, [documentId]);
 
   return <BoardData userDocId={userDocId} customerData={customerData} />;
 };

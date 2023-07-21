@@ -10,8 +10,6 @@ import {
 import Login from "../components/login";
 import Signup from "../components/signup";
 import backgroundImg from "./assets/bg-image.png";
-// import { db } from "../config/firebase";
-// import {getDocs, collection} from "firebase/firestore"
 
 const Home = ({ userToken, setUserToken, setUserDocId }) => {
   // Create states to handle login and signup
