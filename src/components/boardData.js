@@ -1,7 +1,5 @@
 import DataTable from "react-data-table-component";
-import { useState, useEffect } from "react";
-import { db } from "../config/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { useEffect } from "react";
 import { Box, Grid, Typography, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -24,7 +22,7 @@ const columns = [
   },
   {
     name: "Last Online Time",
-    selector: (row) => row.lastOnline,
+    selector: (row) => row.lastOnlineTime,
   },
   {
     name: "Action",
@@ -120,25 +118,29 @@ const data = [
 ];
 
 const BoardData = ({ userDocId, customerData }) => {
-  // State to track all users
-  const [usersList, setUsersList] = useState([]);
   const navigate = useNavigate();
 
-  // // Make reference to users collection in firebase
-  // const usersCollectionRef = collection(db, "users");
+  const displayCustomersData = () => {
+    const mappingCustomersData = customerData.map((el, index) => {
+      // console.log("el- ", el);
+      // console.log("el.lastOnlineTime.seconds- ", el.lastOnlineTime.seconds)
+      // const lastOnlineTime = el.lastOnlineTime.seconds
+      return {
+        ...el,
+        actions: (
+          <>
+            <Link to={`/edit/${el.id}`}>Edit</Link> or{" "}
+            <Link to={`/delete/${el.id}`}>Delete</Link>
+          </>
+        ),
+      };
+    })
+    return mappingCustomersData;
+  };
 
-  // const getUsersList = async () => {
-  //   try {
-  //     const data = await getDocs(usersCollectionRef);
-  //     console.log("data:", data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-  // // Query db on page load (Note: Do not put function in useEffect)
-  // useEffect(() => {
-  //   getUsersList();
-  // }, [usersList]);
+  useEffect(()=> {
+    displayCustomersData()
+  }, [customerData])
 
   // Button handler
   const handleAddUserButton = () => {

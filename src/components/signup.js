@@ -36,6 +36,7 @@ const Signup = ({ setUserDocId }) => {
       setUserDocId(docRefId);
     } catch (e) {
       console.error(e);
+      
     }
   };
 
@@ -57,7 +58,7 @@ const Signup = ({ setUserDocId }) => {
         // Update user's displayName
         await updateProfile(auth.currentUser, {
           displayName: displayName,
-          userId: data.user.uid,
+          userRefId: data.user.uid,
         }).then(() => {
           console.log("display name updated!");
         });
@@ -67,15 +68,14 @@ const Signup = ({ setUserDocId }) => {
         alert("Sign up successful. Please login.");
       } catch (err) {
         console.log("error msg:", err.message);
+        alert("Email already in use. Please login or use another email.")
       }
     } else
       setErrorMessage(
         "Password must be at least 12 characters and include at least 1 special characters of !@#$"
       );
     // Reset text fields
-    setEmail("");
     setPassword("");
-    setDisplayName("");
   };
 
   return (

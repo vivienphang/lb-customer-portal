@@ -18,10 +18,11 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "./components/sidebar";
 import { useEffect, useState } from "react";
 
-const NavLayout = ({ userToken }) => {
+const NavLayout = ({ userToken, prevToken }) => {
   const [username, setUsername] = useState("")
   const navigate = useNavigate();
   console.log("props in NavLayout - displayName: ", userToken.displayName);
+  console.log("prevToken in NavLayout - displayName: ", prevToken);
 
   useEffect(() => {
     setUsername(userToken.displayName)
