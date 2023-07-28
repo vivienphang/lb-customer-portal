@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       const token = localStorage.getItem("authUser");
-      console.log("token:", token);
+      console.log("token in App - ", token);
       if (token === prevToken) {
         setIsUserAuthenticated(true);
       } else {

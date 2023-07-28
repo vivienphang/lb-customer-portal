@@ -22,6 +22,7 @@ const Login = ({ userToken, setUserToken }) => {
       );
       const newUser = { ...userCredential.user };
       console.log("new user:", newUser);
+      localStorage.setItem("username", newUser.displayName)
       setUserToken(newUser); // can use it in app.js
 
       if (newUser.email === email) {

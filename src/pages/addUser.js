@@ -9,7 +9,6 @@ import {
 const AddUser = ({ userDocId, setUserDocId }) => {
   console.log("userDocId prop - ", userDocId)
 
-
   // Create function to add user list into database
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,21 +19,6 @@ const AddUser = ({ userDocId, setUserDocId }) => {
       email: data.get("email"),
     });
   };
-
-  // const createCustomerData = async (userId) => {
-  //   try {
-  //     const docRef = await addDoc(collection(db, "users"), {
-  //       email,
-  //       password,
-  //     });
-  //     console.log("docRef: ", docRef);
-  //     console.log("docRef ID: ", docRef.id);
-  //     const docRefId = docRef.id;
-  //     setUserDocId(docRefId);
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
 
   return (
     <Box

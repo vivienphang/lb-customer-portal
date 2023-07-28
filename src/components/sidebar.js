@@ -33,7 +33,7 @@ import {
             p: 2,
           }}
         >
-          <MenuItem>
+          <MenuItem onClick={handleViewUsers}>
             <SpeedIcon sx={{ color: "black" }} />
             <Typography variant="p" color="black" marginLeft={3}>
               Dashboard

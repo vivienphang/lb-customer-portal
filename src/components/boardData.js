@@ -30,12 +30,10 @@ const columns = [
 ];
 
 const BoardData = ({ userDocId, customerData }) => {
-  console.log("userDocId: ", userDocId)
   const navigate = useNavigate();
 
   const displayCustomersData = () => {
     const mappingCustomersData = customerData.map((el, index) => {
-
       return {
         ...el,
         actions: (
@@ -56,7 +54,7 @@ const BoardData = ({ userDocId, customerData }) => {
 
   return (
     <>
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" p={2}>
         <Typography marginBottom={1} sx={{ fontWeight: "bold", p: 1 }}>
           View Users
         </Typography>
@@ -72,7 +70,12 @@ const BoardData = ({ userDocId, customerData }) => {
         alignItems="flex-start"
       >
         <Grid item xs={12}>
-          <DataTable columns={columns} data={displayCustomersData()} selectableRows pagination />
+          <DataTable
+            columns={columns}
+            data={displayCustomersData()}
+            selectableRows
+            pagination
+          />
         </Grid>
       </Grid>
     </>

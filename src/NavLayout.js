@@ -23,10 +23,14 @@ const NavLayout = ({ userToken, prevToken }) => {
   const navigate = useNavigate();
   console.log("props in NavLayout - displayName: ", userToken.displayName);
   console.log("prevToken in NavLayout - displayName: ", prevToken);
+  let userDisplayName;
+  
 
   useEffect(() => {
-    setUsername(userToken.displayName)
-  }, [username]);
+    // setUsername(userToken.displayName)
+    setUsername(localStorage.getItem("username")) // this works to persist username
+    console.log("user display name: ", userDisplayName)
+  }, [userDisplayName]);
   return (
     <>
       <AppBar
